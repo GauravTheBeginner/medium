@@ -6,7 +6,7 @@ import axios from "axios"
 import {BACKEND_URL} from "../../config"
 
 function Auth({ type }: { type: "Signup" | "Signin" }) {
-  const navigate = useNavigate()
+const navigate = useNavigate()
   const [postInput, setPostInput] = useState<SigninInput>({
     email: "",
     name: "",
