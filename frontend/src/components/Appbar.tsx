@@ -23,6 +23,11 @@ function Appbar() {
   return (
     <div className=" w-[100%] flex  justify-center border-black   border-b-[0.5px] ">
     <div className=" flex items-center   w-[100%] max-w-[75rem] h-[4rem] py-4  justify-between px-5 lg:px-9">
+      {token ?  <Link to={"/blogs"} className=" font-bold text-xl">
+            Medium
+        </Link>:  <Link to={"/"} className=" font-bold text-xl">
+            Medium
+        </Link> }
         <Link to={"/"} className=" font-bold text-xl">
             Medium
         </Link>
