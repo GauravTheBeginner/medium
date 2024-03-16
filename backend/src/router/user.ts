@@ -32,11 +32,11 @@ userRouter.post('/signup', async (c) => {
 				name: body.name
 			}
 		})
-
+		const name = user.name;
 		const token = await sign({ id: user.id }, c.env.JWT_SECRET)
 
-		return c.text(
-			token
+		return c.json(
+			{token,name}
 		)
 	} catch (error) {
 		c.status(403);
@@ -74,11 +74,11 @@ userRouter.post('/signin', async (c) => {
 			c.status(403);
 			return c.json({ error: "user not found" });
 		}
-
-		const jwt = await sign({ id: user.id }, c.env.JWT_SECRET);
-		return c.text(
-			jwt
-		)
+const name = user.name;
+		const token = await sign({ id: user.id }, c.env.JWT_SECRET);
+		return c.json({
+			token,name
+		})
 	} catch (error) {
 		console.log(error)
 		c.status(411);
@@ -121,3 +121,26 @@ userRouter.put('/:id',async(c)=>{
 	}
 })
 
+userRouter.get("/users",async(c)=>{
+	const prisma = new PrismaClient({
+		
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+		try {
+			const users = await prisma.user.findMany({
+			select:{
+				id:true	,
+				name:true,
+				email:true,
+			}
+		})
+		return c.json({
+			users
+		})
+		} catch (error) {
+			console.log(error)
+		}
+		
+		
+	
+})

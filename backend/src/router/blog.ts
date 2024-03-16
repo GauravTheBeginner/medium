@@ -29,6 +29,7 @@ blogRouter.use('/*', async (c, next) => {
             })
         }
     } catch (error) {
+        console.log(error)
         c.status(403);
         return c.json({
             msg: "not logged in"
