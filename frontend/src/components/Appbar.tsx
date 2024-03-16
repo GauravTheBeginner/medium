@@ -10,7 +10,7 @@ function Appbar() {
   const name = localStorage.getItem("name" )|| "anonymous";
   const logout = ()=>{
     localStorage.clear(); 
-    navigate('/signup')
+    navigate('/')
     
   }
   const login = ()=>{
