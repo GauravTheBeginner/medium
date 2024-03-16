@@ -87,3 +87,37 @@ userRouter.post('/signin', async (c) => {
 		})
 	}
 })
+
+
+userRouter.put('/:id',async(c)=>{
+	const  id  = c.req.param("id")
+	const body = await c.req.json();
+	const prisma = new PrismaClient({
+		
+		datasourceUrl: c.env?.DATABASE_URL,
+	}).$extends(withAccelerate());
+	try {
+		
+
+		 await prisma.user.update({
+			where: {
+				id:id,
+			},data:{
+				email:body.email,
+				password:body.password,
+				name:body.name
+			}
+		});
+		return c.json(
+			{msg:"updated"}
+		 )
+		
+	} catch (error) {
+		console.log(error)
+		c.status(411);
+		return c.json({
+			msg: "invalid"
+		})
+	}
+})
+
