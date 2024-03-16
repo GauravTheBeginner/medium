@@ -28,9 +28,7 @@ function Appbar() {
         </Link>:  <Link to={"/"} className=" font-bold text-xl">
             Medium
         </Link> }
-        <Link to={"/"} className=" font-bold text-xl">
-            Medium
-        </Link>
+       
         <div className=" space-x-2  flex   justify-center items-center">
           {token ?   <Button onPress={logout} value="Logout"/> : <Button onPress={login} value="Sign up"/>}
           
