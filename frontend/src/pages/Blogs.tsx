@@ -11,22 +11,22 @@ function Blogs() {
     return <Spinner/>
   }
   return (
-    <div className="w-[100%] flex flex-col justify-center items-center">
+    <div className="w-full flex flex-col justify-center items-center">
       <Appbar />
-      <div className=" flex flex-col justify-center items-center   w-[100%]  max-w-[90rem]  px-[3rem] py-9 ">
-        {blog.map(blog => <BlogCard
-          id={blog.id}
-          authorname={blog.author.name || "Anonymous"}
-          title={blog.title}
-          content={blog.content}
-          publishedDate={"10-March"}
-        />)}
-
-
-
+      <div className="flex flex-col justify-center items-center w-full max-w-screen-xl  py-8 md:px-8 lg:px-16">
+        {blog.map((blogItem) => (
+          <BlogCard
+            key={blogItem.id}
+            id={blogItem.id}
+            authorname={blogItem.author.name || 'Anonymous'}
+            title={blogItem.title}
+            content={blogItem.content}
+            publishedDate="10-March"
+          />
+        ))}
       </div>
     </div>
-  )
+  );
 }
 
 export default Blogs
