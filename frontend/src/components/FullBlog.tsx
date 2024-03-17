@@ -11,7 +11,7 @@ function FullBlog({ blog }: { blog: Blog }) {
         <div className="grid gap-5 grid-cols-1 md:grid-cols-12 px-5 md:px-10 max-w-screen-xl mx-auto pt-10">
           <div className="md:col-span-7">
             <div className="text-3xl font-extrabold">{blog.title}</div>
-            <div className="pt-4">{blog.content}</div>
+            < div className="pt-4" dangerouslySetInnerHTML={{__html:blog.content}}/>
           </div>
           <div className="md:col-span-5">
             <div className="text-slate-600 text-lg">Author</div>
