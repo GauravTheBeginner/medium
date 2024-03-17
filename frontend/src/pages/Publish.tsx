@@ -61,6 +61,7 @@ function Publish() {
     ref={editor}
     className="mt-1 mb-4 p-2 block w-full border rounded-md focus:outline-none focus:ring-blue-500 focus:border-blue-500" 
     value={content}
+    
     onChange={newContent => setContent(newContent)} 
 />
 

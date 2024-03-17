@@ -11,7 +11,7 @@ interface BlogCardProps {
 }
 
 function BlogCard({ authorname, publishedDate, title, content, id }: BlogCardProps) {
-    const truncatedContent = content.slice(0, 200) + "...";
+    const truncatedContent = content.slice(0, 100) + "...";
     const sanitizedContent = sanitizeHtml(truncatedContent, {
         allowedTags: ['p', 'a', 'b', 'i', 'em', 'strong'],
         allowedAttributes: {}
