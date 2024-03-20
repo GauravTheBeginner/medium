@@ -71,6 +71,32 @@ blogRouter.post('/', async (c) => {
     }
 
 })
+//want to delete all blogs of specific user id
+blogRouter.delete('/bulk', async (c) => {
+    const prisma = new PrismaClient({
+        datasourceUrl: c.env.DATABASE_URL,
+    }).$extends(withAccelerate())
+    const authorId = c.get("userId")
+    try {
+        const blogs = await prisma.blog.deleteMany({
+            where: {
+                authorId: authorId
+            }
+        })
+        return c.json({
+            blogs
+        })
+    } catch (error) {
+        c.status(403);
+        return c.text("invalid")
+    }
+
+}
+)
+
+
+
+
 
 blogRouter.put('/:id', async (c) => {
     const id = c.req.param("id")
@@ -115,7 +141,7 @@ blogRouter.get('/bulk', async (c) => {
     }).$extends(withAccelerate())
     const blogs = await prisma.blog.findMany({
         select: {
-            title:true,
+            title: true,
             content: true,
             id: true,
             author: {
@@ -151,7 +177,7 @@ blogRouter.get('/:id', async (c) => {
                 id: id
             }, select: {
                 content: true,
-                id:true,
+                id: true,
                 title: true,
                 author: {
                     select: {
@@ -161,12 +187,12 @@ blogRouter.get('/:id', async (c) => {
             }
 
         })
-       
+
         if (blog && blog.author && !blog.author.name) {
             blog.author.name = "Anonymous";
         }
         return c.json(
-           {blog}
+            { blog }
         )
     } catch (error) {
         c.status(411);
