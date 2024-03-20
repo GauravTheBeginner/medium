@@ -20,8 +20,11 @@ function Auth({ type }: { type: "Signup" | "Signin" }) {
       const response = await axios.post(`${BACKEND_URL}/api/v1/${type === "Signup" ? "signup" : "signin"}`, postInput);
       const jwt = response.data.token;
       const name = response.data.name;
+      const id = response.data.id;
       localStorage.setItem("token", jwt);
       localStorage.setItem("name", name);
+      localStorage.setItem("id", id);
+
       toast.success(`${type === "Signup" ? "Signed up" : "Signed in"} successfully!`);
       setTimeout(() => {
         navigate("/blogs");

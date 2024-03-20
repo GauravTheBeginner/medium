@@ -39,7 +39,7 @@ function Appbar() {
           {token ?
             <div className="space-x-2  flex  justify-center items-center ">
                <Link to={"/publish"}   className=" border-none px-2 rounded-xl text-[12px] bg-green-400 hover:bg-green-500 text-white font-medium py-[3px] "> Publish </Link>
-            <Avatar name={name}/>
+            <Avatar  name={name}/>
             </div> : ""
       }
         </div>
