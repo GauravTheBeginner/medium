@@ -21,7 +21,8 @@ function Blogs() {
             authorname={blogItem.author.name || 'Anonymous'}
             title={blogItem.title}
             content={blogItem.content}
-            publishedDate="10-March"
+            //date to string remove time
+            publishedDate={blogItem.date}
           />
         ))}
       </div>

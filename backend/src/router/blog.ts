@@ -59,11 +59,13 @@ blogRouter.post('/', async (c) => {
                 title: body.title,
                 content: body.content,
                 authorId: authorId,
-
+                //want my date in this type of format march 12,2021 not timestamp
+               date: new Date().toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' })
             }
         })
         return c.json({
-            id: blog.id
+            id: blog.id,
+            date: blog.date
         })
     } catch (error) {
         c.status(403);
@@ -148,7 +150,8 @@ blogRouter.get('/bulk', async (c) => {
                 select: {
                     name: true,
                 }
-            }
+            },
+            date:true
         }
     });
     for (let blog of blogs) {

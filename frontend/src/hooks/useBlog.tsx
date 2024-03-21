@@ -7,7 +7,8 @@ interface BlogProps {
   "id":string,
   "author":{
     "name":string ,
-  }
+  },
+  "date":string
 }
 
 
@@ -25,7 +26,7 @@ export const useBlogs = () => {
        }
       })
       setBlog(res.data.blogs)
-  
+      console.log(res.data.blogs)
       setLoading(false) 
       } catch (error) {
         console.log(error)
